@@ -67,7 +67,7 @@ def strdateToTime(value, format='medium'):
 #----------------------------------------------------------------------------#
 # Controllers.
 #----------------------------------------------------------------------------#
-
+#main app route
 @app.route('/')
 def index():
   return render_template('pages/home.html')
@@ -75,8 +75,6 @@ def index():
 
 #  Venues
 #  ----------------------------------------------------------------
-
-
 @app.route('/venues')
 def venues():
     # lets get all records from Venue table
@@ -106,8 +104,9 @@ def venues():
 
     return render_template('pages/venues.html', areas=datarray)
     
-
-
+#-----------------------------------------------
+# venues Search
+#-----------------------------------------------
 @app.route('/venues/search', methods=['POST'])
 def search_venues():
   sterm = request.form.get('search_term', '').strip()
@@ -133,6 +132,9 @@ def search_venues():
   return render_template('pages/search_venues.html', results=response, search_term=request.form.get('search_term', ''))
 
 
+#------------------------------
+# Show venue by id
+#-------------------------------------
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
     getvenueItem = Venue.query.filter_by(id=venue_id).one()
@@ -201,7 +203,7 @@ def show_venue(venue_id):
     
 
 
-
+#---------------------------------------------------------
 #  Create Venue
 #  ----------------------------------------------------------------
 
@@ -307,6 +309,7 @@ def delete_venue(venue_id):
         flash(' Venue ' + venuename + ' is deleted.')
         return redirect(url_for('index'))
 
+#----------------------------------------------------------------
 #  Artists
 #  ----------------------------------------------------------------
 
