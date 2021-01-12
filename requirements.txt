@@ -1,0 +1,10 @@
+flask
+flask-sqlalchemy
+Flask-Migrate
+Flask-Moment
+Flask-Wtf
+SQLAlchemy
+postgres
+psycopg2
+datetime
+json
